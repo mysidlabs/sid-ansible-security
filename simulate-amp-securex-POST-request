@@ -1,4 +1,4 @@
-curl --location --request POST 'https://rhap2.mysidlabs.com/api/v2/workflow_job_templates/18/launch/' \
+curl --location --request POST 'https://rhap2.mysidlabs.com/api/v2/workflow_job_templates/30/launch/' \
 --header 'Authorization: Bearer 06ZKpghHbPUK0ofqRsDLUaW63jSdA4' \
 --header 'Content-Type: application/json' \
 --data-raw '{

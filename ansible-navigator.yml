@@ -7,7 +7,7 @@ ansible-navigator:
   execution-environment:
     enabled: true
     container-engine: podman
-    image: sec_sid_ee:latest
+    image: ghcr.io/mysidlabs/sid-security-ee:latest
     pull-policy: missing
 
   logging:
