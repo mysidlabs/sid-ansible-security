@@ -9,6 +9,9 @@ ansible-navigator:
     container-engine: podman
     image: ghcr.io/mysidlabs/sid-security-ee:latest
     pull-policy: missing
+    environment-variables:
+      pass:
+        - USER
 
   logging:
     level: critical

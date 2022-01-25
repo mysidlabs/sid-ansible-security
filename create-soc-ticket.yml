@@ -7,6 +7,7 @@
   tasks:
     - name: Create SOC Ticket
       # Fields:
+      # SID User ID:    10076
       # Event Type ID:  10070
       # ID:             10071
       # Active:         10072
@@ -28,6 +29,7 @@
         issuetype: ERD-Event
       args:
         fields:
+          customfield_10076: "{{ lookup('env', 'USER') }}"
           customfield_10065: '{{ item.event_type}}'
           customfield_10066: '{{ item.computer.hostname }}'
           customfield_10067: '{{ item.severity }}'
