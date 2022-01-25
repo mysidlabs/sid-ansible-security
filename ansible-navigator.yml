@@ -15,7 +15,7 @@ ansible-navigator:
     append: False
     file: ./navigator-log/log.txt
 
-  mode: stdout
+  mode: interactive
 
   playbook-artifact:
     enable: False
