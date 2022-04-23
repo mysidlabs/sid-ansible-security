@@ -2,7 +2,7 @@
 Project for Sirius Security  Immersion Day
 
 # Components
-* RHAP 2.0
+* RHAP 2.1
 * Cisco AMP / SecureX
 * Jira
 * Palo Alto NGFW
