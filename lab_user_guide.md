@@ -1,15 +1,14 @@
 # Ansible Security Immersion Day Lab Outline
 ## Initial Setup
-### Fork the lab repo and connect to you r jump box.
-1. Fork https://github.com/mysidlabs/sid-ansible-security
-1. Connect to your jump host where ### is replaced by your user number:
-```
+### Connect to your jump box.
+Connect to your jump host where ### is replaced by your user number:
+```bash
 >>  ssh siduser###@siduser###.jump.mysidlabs.com
-Password: Ger1974!
+Password: Chi1962!
 ```
 You should then see the following:
 ```bash
-    Welcome to the CDW/Sirius Red Hat Immersion Day lab environment
+Welcome to the CDW/Sirius Red Hat Immersion Day lab environment
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 Login Succeeded!
 Cloning into 'sid-ansible-security'...
@@ -18,11 +17,9 @@ remote: Counting objects: 100% (125/125), done.
 remote: Compressing objects: 100% (69/69), done.
 remote: Total 125 (delta 44), reused 111 (delta 32), pack-reused 0
 Receiving objects: 100% (125/125), 22.19 KiB | 11.09 MiB/s, done.
-Resolving deltas: 100% (44/44), done.
+Resolving deltas: 100% (44/44), done. 
 siduser270@jump:~$ 
 ```
-
-
 ### Review jump environment
 Installed tools:
   * `git` - command line tool to interact with git source control repositories.
@@ -32,7 +29,7 @@ Installed tools:
   * `ansible-builder` - a command line wrapper to podman to build execution environments.
   * `ansible-navigator` - a powerful replacement to the old ansible-playbook command.
   * `ansible-vault` - a command line encryption tool to protect secrets for ansible-playbooks.
-  * `tree` - a command line utilitiy to show recursive directory listings in a visual form.
+  * `tree` - a command line utilitiy to show recursive directory listings in a visual format.
 
     We will be editing text files throught the course of this lab.  Both `nano` and `vim` are available.  If you are inexperienced with `vim`,  `nano` will be the better choice, as it behaves more like a basic text editor.
 
@@ -47,8 +44,38 @@ ansible.cfg              create-security-rule.yml  dev-data               filter
 siduser270@jump:~/sid-ansible-security$ 
 
 ```
-### Decrypt variables file
-Note that ansible-vault is not currently supported by ansible-navigator.  We will need to decrypt are group_vars/all.yml file.
+### Using Ansible Vault with ansible-navigator
+[https://github.com/ansible/ansible-navigator/blob/main/docs/faq.md]
+
+There are two methods to expose a vault password for use with ansible-navigator:
+1. Store the vault password securely on the local files system:
+    ```bash
+    $ touch ~/.vault_password
+    $ chmod 600 ~/.vault_password
+    # The leading space here is necessary to keep the command out of the command history
+    $  echo my_password >> ~/.vault_password
+    # Link the password file into the current working directory
+    $ ln ~/.vault_password .
+    # Set the environment variable to the location of the file
+    $ export :wq
+    ANSIBLE_VAULT_PASSWORD_FILE=.vault_password
+    $ ansible-navigator run site.yml
+    ```
+2. Store the vault password ina an environment variable
+    ```bash
+    $ touch ~/.vault_password.sh
+    $ chmod 700 ~/.vault_password.sh
+    $ echo -e '#!/bin/sh\necho ${ANSIBLE_VAULT_PASSWORD}' >> ~/.vault_password.sh
+    # Link the password file into the current working directory
+    $ ln ~/.vault_password.sh .
+    # The leading space here is necessary to keep the command out of the command history
+    # by using an environment variable prefixed with ANSIBLE it will automatically get passed
+    # into the execution environment
+    $  export ANSIBLE_VAULT_SECRET=my_password
+    # Set the environment variable to the location of the file
+    $ ANSIBLE_VAULT_PASSWORD_FILE=.vault_password.sh
+    $ ansible-navigator run site.yml
+    ```
 
 Execute the following command to decrypt the group_vars/all.yml file:
 ```bash
