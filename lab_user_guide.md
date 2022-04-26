@@ -57,11 +57,9 @@ There are two methods to expose a vault password for use with ansible-navigator:
     # Link the password file into the current working directory
     $ ln ~/.vault_password .
     # Set the environment variable to the location of the file
-    $ export :wq
-    ANSIBLE_VAULT_PASSWORD_FILE=.vault_password
-    $ ansible-navigator run site.yml
+    $ export ANSIBLE_VAULT_PASSWORD_FILE=.vault_password
     ```
-2. Store the vault password ina an environment variable
+2. Store the vault password in an environment variable
     ```bash
     $ touch ~/.vault_password.sh
     $ chmod 700 ~/.vault_password.sh
@@ -74,7 +72,6 @@ There are two methods to expose a vault password for use with ansible-navigator:
     $  export ANSIBLE_VAULT_SECRET=my_password
     # Set the environment variable to the location of the file
     $ ANSIBLE_VAULT_PASSWORD_FILE=.vault_password.sh
-    $ ansible-navigator run site.yml
     ```
 
 Execute the following command to decrypt the group_vars/all.yml file:
@@ -207,10 +204,8 @@ quay.io/ansible/ansible-navigator-demo-ee  0.6.0       e65e4777caa3  5 months ag
     ```bash
     ansible-navigator run create-soc-ticket.yml --extra-vars "@dev-data/amp_single_event.json" 
     ```
-1. Vault Password is: `Ger1974!`
 1. Instructor will show tickets added to JIRA project
 1. Edit `roles/paloalto/tasks/main.yml` `rule_name:` key and `roles/jira/tasks/main.yml` `summary:` key to include your siduserID.
-
 1. Execute `amp-mitigation-play.yml` with `ansible-navigator`:
     ```bash
     ansible-navigator run amp-mitigation-play.yml --extra-vars "@dev-data/amp_single_event.json" 
@@ -220,7 +215,7 @@ quay.io/ansible/ansible-navigator-demo-ee  0.6.0       e65e4777caa3  5 months ag
 ## Lab 3 - Automation controller and the AC REST api
 1. Login to https://rhap2.mysidlabs.com
     * user: siduser###
-    * password: Ger1974!
+    * password: Chi1962!
 1. Review execution environments in AC.
 1. Create project for individual repos.
 1. Review registering external applications.
